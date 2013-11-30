@@ -90,7 +90,10 @@
     }, false);
 
     document.addEventListener("click", function (e) {
-        e.stopPropagation();
+        toggleView();
+    }, false);
+
+    document.addEventListener("touchstart", function (e) {
         toggleView();
     }, false);
 
