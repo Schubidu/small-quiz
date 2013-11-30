@@ -1,0 +1,63 @@
+body {
+  font-family: sans-serif;
+  background: #fff; }
+
+ul, li {
+  padding: 0;
+  margin: 0; }
+
+li {
+  list-style: none;
+  font-size: 1.5em;
+  padding: .5em; }
+
+html, body {
+  height: 100%;
+  width: 100%; }
+
+body {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+#quiz * {
+  display: none; }
+#quiz .show {
+  display: block;
+  background: fff; }
+#quiz #competitors li {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  margin-top: -1em;
+  text-align: center;
+  font-size: 5em; }
+#quiz:-webkit-full-screen {
+  height: 100%;
+  width: 100%;
+  background: #fff;
+  position: relative; }
+#quiz:-moz-full-screen {
+  height: 100%;
+  width: 100%;
+  background: #fff;
+  position: relative; }
+#quiz:-ms-full-screen {
+  height: 100%;
+  width: 100%;
+  background: #fff;
+  position: relative; }
+#quiz:-o-full-screen {
+  height: 100%;
+  width: 100%;
+  background: #fff;
+  position: relative; }
+#quiz:full-screen {
+  height: 100%;
+  width: 100%;
+  background: #fff;
+  position: relative; }

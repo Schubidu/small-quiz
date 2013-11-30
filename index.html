@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+    <title>Small Quiz</title>
+    <link rel="stylesheet" href="css/main.css"/>
+</head>
+<body>
+
+<div id="quiz">
+
+    <h1>Competitors</h1>
+    <ul id="competitors">
+        <li>1 Chris</li>
+        <li>2 Dominik</li>
+        <li>3 Steffi</li>
+        <li>4 Stefan</li>
+        <li>5 Gabriel</li>
+    </ul>
+
+    <h1>Questions</h1>
+    <ul id="questions">
+        <li>Question 1</li>
+        <li>Question 2</li>
+        <li>Question 3</li>
+        <li>Question 4</li>
+        <li>Question 5</li>
+        <li>Question 6</li>
+        <li>Question 7</li>
+        <li>Question 8</li>
+        <li>Question 9</li>
+        <li>Question 10</li>
+        <li>Question 11</li>
+        <li>Question 12</li>
+        <li>Question 13</li>
+    </ul>
+
+</div>
+</body>
+<script src="js/main.js"></script>
+<script>
+
+
+    function toggleFullScreen() {
+        if (!document.mozFullScreen && !document.webkitFullScreen) {
+            if (quizBlock.mozRequestFullScreen) {
+                quizBlock.mozRequestFullScreen();
+            } else {
+                quizBlock.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+            }
+            return true;
+        } else {
+            if (quizBlock.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else {
+                document.webkitCancelFullScreen();
+            }
+            return false;
+        }
+    }
+
+    function toggleView() {
+        if (showCompetitors) {
+            questions.getRoot().hide();
+            competitors.showNext();
+            competitors.getRoot().show();
+            showCompetitors = false;
+        } else {
+            competitors.getRoot().hide();
+            questions.showNext();
+            questions.getRoot().show();
+            showCompetitors = true;
+        }
+    }
+
+    var competitors = new RandomHtmlList(document.getElementById("competitors"));
+    var quizBlock = document.getElementById("quiz");
+    var questions = new RandomHtmlList(document.getElementById("questions"));
+    var showCompetitors = true;
+
+    toggleView();
+
+    document.addEventListener("keydown", function (e) {
+        if (e.keyCode == 13) {
+            toggleFullScreen();
+
+        }
+        if (e.keyCode == 32) {
+            toggleView();
+        }
+    }, false);
+
+    document.addEventListener("click", function (e) {
+        e.stopPropagation();
+        toggleView();
+    }, false);
+
+</script>
+</html>
