@@ -2,15 +2,20 @@ class RandomList {
     private items:Array = null;
     private storageItems:Array = null;
     private currentItem:any = null;
+    public onStart:() => void;
+    public onFinish:() => void;
+
 
     constructor(items:Array) {
         this.items = items;
         this.storageItems = [];
+        this.onStart();
         this.next();
     }
 
     getItems():Array {
         if (this.items.length == 0) {
+            this.onFinish();
             this.items = this.storageItems.map(function (i) {
                 return i;
             });

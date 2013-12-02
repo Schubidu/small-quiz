@@ -5,10 +5,12 @@ var RandomList = (function () {
         this.currentItem = null;
         this.items = items;
         this.storageItems = [];
+        this.onStart();
         this.next();
     }
     RandomList.prototype.getItems = function () {
         if (this.items.length == 0) {
+            this.onFinish();
             this.items = this.storageItems.map(function (i) {
                 return i;
             });

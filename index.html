@@ -7,15 +7,20 @@
 </head>
 <body>
 
+<!-- This will be the Startpage -->
+
 <div id="quiz">
+    <header id="start">
+        Small - Quiz
+    </header>
 
     <h1>Competitors</h1>
     <ul id="competitors">
-        <li>1 Chris</li>
-        <li>2 Dominik</li>
-        <li>3 Steffi</li>
-        <li>4 Stefan</li>
-        <li>5 Gabriel</li>
+        <li>Chris</li>
+        <li>Dominik</li>
+        <li>Steffi</li>
+        <li>Stefan</li>
+        <li>Gabriel</li>
     </ul>
 
     <h1>Questions</h1>
@@ -35,68 +40,15 @@
         <li>Question 13</li>
     </ul>
 
+    <!-- After all Questions -->
+    <footer id="finish">
+        Thank You!
+    </footer>
 </div>
 </body>
 <script src="js/main.js"></script>
+<script src="js/quiz.js"></script>
 <script>
-
-
-    function toggleFullScreen() {
-        if (!document.mozFullScreen && !document.webkitFullScreen) {
-            if (quizBlock.mozRequestFullScreen) {
-                quizBlock.mozRequestFullScreen();
-            } else {
-                quizBlock.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
-            }
-            return true;
-        } else {
-            if (quizBlock.mozCancelFullScreen) {
-                document.mozCancelFullScreen();
-            } else {
-                document.webkitCancelFullScreen();
-            }
-            return false;
-        }
-    }
-
-    function toggleView() {
-        if (showCompetitors) {
-            questions.getRoot().hide();
-            competitors.showNext();
-            competitors.getRoot().show();
-            showCompetitors = false;
-        } else {
-            competitors.getRoot().hide();
-            questions.showNext();
-            questions.getRoot().show();
-            showCompetitors = true;
-        }
-    }
-
-    var competitors = new RandomHtmlList(document.getElementById("competitors"));
-    var quizBlock = document.getElementById("quiz");
-    var questions = new RandomHtmlList(document.getElementById("questions"));
-    var showCompetitors = true;
-
-    toggleView();
-
-    document.addEventListener("keydown", function (e) {
-        if (e.keyCode == 13) {
-            toggleFullScreen();
-
-        }
-        if (e.keyCode == 32) {
-            toggleView();
-        }
-    }, false);
-
-    document.addEventListener("click", function (e) {
-        toggleView();
-    }, false);
-
-    document.addEventListener("touchstart", function (e) {
-        toggleView();
-    }, false);
 
 </script>
 </html>
