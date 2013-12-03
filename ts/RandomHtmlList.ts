@@ -41,7 +41,7 @@ class RandomHtmlList extends RandomList {
         this.show();
     }
 
-    getRoot() {
+    getRoot():RootElement {
         return this.rootElement;
     }
 

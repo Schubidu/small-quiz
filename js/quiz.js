@@ -18,16 +18,18 @@ function toggleFullScreen() {
 
 function toggleView() {
     startBlock.hide();
-    if (showCompetitors) {
-        questions.getRoot().hide();
-        competitors.showNext();
-        competitors.getRoot().show();
-        showCompetitors = false;
-    } else {
-        competitors.getRoot().hide();
-        questions.showNext();
-        questions.getRoot().show();
-        showCompetitors = true;
+    if (!isFinshed) {
+        if (showCompetitors) {
+            questions.getRoot().hide();
+            competitors.showNext();
+            competitors.getRoot().show();
+            showCompetitors = false;
+        } else {
+            competitors.getRoot().hide();
+            questions.showNext();
+            questions.getRoot().show();
+            showCompetitors = true;
+        }
     }
 }
 
@@ -37,16 +39,21 @@ var startBlock = new RootElement(document.getElementById("start"));
 var finishBlock = new RootElement(document.getElementById("finish"));
 var questions = RandomHtmlList.init(document.getElementById("questions"));
 var showCompetitors = true;
+var isFinshed = false;
 
 startBlock.show();
 
-competitors.onFinish = function(){
+competitors.onFinish = function () {
 //    console.log('competitors finished');
 };
 
-questions.onFinish = function(){
-//    console.log('questions finished');
+questions.onFinish = function () {
+    console.log('questions finished');
+    questions.getRoot().hide();
+    competitors.getRoot().hide();
     finishBlock.show();
+    isFinshed = true;
+    console.log('questions finished 2');
 };
 
 //toggleView();

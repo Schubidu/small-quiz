@@ -30,13 +30,26 @@ $mq-hdscreen: 1280;
   }
 }
 
+%fullWidthAndHeight {
+  height: 100%;
+  width: 100%;
+}
+
 %displayCenter {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  margin-top: -.5em;
+  @extend %fullWidthAndHeight;
   text-align: center;
+  &.show {
+    display: table-row;
+  }
+  .show {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+  }
+}
+
+html, body {
+  @extend %fullWidthAndHeight;
 }
 
 body {
@@ -44,7 +57,7 @@ body {
   background: #fff;
 }
 
-ul, li, h1, p {
+html, body, ul, li, h1, p {
   padding: 0;
   margin: 0;
 }
@@ -52,11 +65,6 @@ ul, li, h1, p {
 li {
   list-style: none;
   font-size: 1.5em;
-}
-
-html, body {
-  height: 100%;
-  width: 100%;
 }
 
 body {
@@ -69,6 +77,9 @@ body {
 }
 
 #quiz {
+  @extend %fullWidthAndHeight;
+  display: table;
+
   * {
     display: none;
   }
@@ -78,7 +89,7 @@ body {
   }
 
   .show {
-    display: block;
+    //   display: block;
     background: fff;
   }
 
@@ -95,8 +106,8 @@ body {
       font-size: 8em;
     }
 
-    * {
-      @extend .show;
+    .show > * {
+      display: block;
       line-height: 1.1;
     }
 
@@ -116,16 +127,9 @@ body {
   }
 
   #finish {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 6;
-    background: #333;
-
+    @extend %displayCenter;
     div {
-      @extend %displayCenter;
+      background: #333;
       font-weight: bold;
       color: #ffffff;
       font-size: 5em;
@@ -139,8 +143,8 @@ body {
   }
 
   #competitors {
+    @extend %displayCenter;
     li {
-      @extend %displayCenter;
       font-size: 3em;
 
       @include mq($mq-tablet) {
@@ -154,12 +158,14 @@ body {
   }
 
   #questions {
+    @extend %displayCenter;
+
     li {
       padding: .5em;
       font-size: 1.5em;
 
       @include mq($mq-tablet) {
-        padding: .2em;
+        padding: .2em 2em;
         font-size: 3em;
       }
 
