@@ -17,6 +17,7 @@ function toggleFullScreen() {
 }
 
 function toggleView() {
+    startBlock.hide();
     if (showCompetitors) {
         questions.getRoot().hide();
         competitors.showNext();
@@ -30,20 +31,29 @@ function toggleView() {
     }
 }
 
-var competitors = new RandomHtmlList(document.getElementById("competitors"));
+var competitors = RandomHtmlList.init(document.getElementById("competitors"));
 var quizBlock = document.getElementById("quiz");
-var startBlock = document.getElementById("start");
-var finishBlock = document.getElementById("finish");
-var questions = new RandomHtmlList(document.getElementById("questions"));
+var startBlock = new RootElement(document.getElementById("start"));
+var finishBlock = new RootElement(document.getElementById("finish"));
+var questions = RandomHtmlList.init(document.getElementById("questions"));
 var showCompetitors = true;
-var state =
 
-toggleView();
+startBlock.show();
+
+competitors.onFinish = function(){
+//    console.log('competitors finished');
+};
+
+questions.onFinish = function(){
+//    console.log('questions finished');
+    finishBlock.show();
+};
+
+//toggleView();
 
 document.addEventListener("keydown", function (e) {
     if (e.keyCode == 13) {
         toggleFullScreen();
-
     }
     if (e.keyCode == 32) {
         toggleView();

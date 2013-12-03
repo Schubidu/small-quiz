@@ -1,29 +1,37 @@
+/// <reference path="IRandomItem.ts"/>
 class RandomList {
-    private items:Array = null;
-    private storageItems:Array = null;
-    private currentItem:any = null;
-    public onStart:() => void;
-    public onFinish:() => void;
+    private items:Array<IRandomItem> = null;
+    private storageItems:Array<IRandomItem> = null;
+    private currentItem:IRandomItem = null;
+    private isFinished:boolean = false;
+    private isStarted:boolean = true;
+    public onFinish:() => void = null;
 
 
-    constructor(items:Array) {
+    constructor(items:Array<IRandomItem>) {
         this.items = items;
-        this.storageItems = [];
-        this.onStart();
+        this.storageItems = <Array<IRandomItem>>[];
+//        this.onStart();
         this.next();
+
     }
 
-    getItems():Array {
-        if (this.items.length == 0) {
+    getItems():Array<IRandomItem> {
+        if (this.isFinished) {
             this.onFinish();
-            this.items = this.storageItems.map(function (i) {
+            this.isFinished = false;
+        }
+        if (this.items.length == 0) {
+            this.items = this.storageItems.map(function (i:IRandomItem) {
+                i.priority = i.defaultPriority;
                 return i;
             });
+            this.isFinished = true;
         }
         return this.items;
     }
 
-    getStorageItems():Array {
+    getStorageItems():Array<IRandomItem> {
         return this.storageItems;
     }
 
@@ -32,11 +40,21 @@ class RandomList {
         var items = this.getItems();
 
         this.currentItem = items[randomItemIndex];
-        this.storageItems.push(this.currentItem);
-        this.items.splice(randomItemIndex, 1);
+        // TODO: build in priority
+//        if(this.currentItem.priority !== 0) {
+//            this.currentItem.priority = this.currentItem.priority - 1 ;
+//            items[randomItemIndex] = this.currentItem ;
+//        } else {
+        if (!this.isStarted) {
+            this.storageItems.push(this.currentItem);
+            this.items.splice(randomItemIndex, 1);
+        } else {
+            this.isStarted = false;
+        }
+//        }
     }
 
-    current():any {
+    current():IRandomItem {
         return this.currentItem;
     }
 

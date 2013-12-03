@@ -1,32 +1,38 @@
+/// <reference path="IRandomItem.ts"/>
 /// <reference path="RandomList.ts"/>
 /// <reference path="RootElement.ts"/>
 
 class RandomHtmlList extends RandomList {
-    private rootElement:HTMLUListElement = null;
+    public rootElement:RootElement = null;
 
-    constructor(listRoot:HTMLUListElement) {
+    public set RootElement(rootElement:RootElement){
+        this.rootElement = rootElement;
+    }
+
+    static init(listRoot:HTMLUListElement):RandomHtmlList {
         var list = (<HTMLLIElement[]><any>listRoot.querySelectorAll('li'));
-        super(<HTMLLIElement[]> Array.prototype.slice.call(list, 0));
-        this.rootElement = new RootElement(listRoot);
-    }
-
-    getItems() {
-        return <HTMLLIElement[]> super.getItems();
-    }
-
-    current():HTMLLIElement {
-        return <HTMLLIElement> super.current();
+        var items = <Array<IRandomItem>> Array.prototype.slice.call(list, 0).map(function (element:HTMLElement) {
+            var priority = (element.hasAttribute('data-priority')) ? <number><any> element.getAttribute('data-priority') : 0;
+            return <IRandomItem>{
+                content: element,
+                priority: priority,
+                defaultPriority: priority
+            }
+        });
+        var randomHtmlList = new RandomHtmlList(items);
+        randomHtmlList.RootElement = new RootElement(listRoot);
+        return randomHtmlList;
     }
 
     reset() {
-        super.getStorageItems().forEach(function (element) {
-            var e = <HTMLLIElement><any>element;
+        super.getStorageItems().forEach(function (element:IRandomItem) {
+            var e = <HTMLLIElement><any>element.content;
             e.className = '';
         })
     }
 
     show() {
-        this.current().className = 'show';
+        this.current().content.className = 'show';
     }
 
     showNext() {
@@ -35,7 +41,7 @@ class RandomHtmlList extends RandomList {
         this.show();
     }
 
-    getRoot(){
+    getRoot() {
         return this.rootElement;
     }
 

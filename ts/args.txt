@@ -1,0 +1,1 @@
+--out js/main.js ts/main.ts -w -t ES5 --sourcemap

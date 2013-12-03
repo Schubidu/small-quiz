@@ -1,15 +1,22 @@
+#quiz #start, #quiz #finish div, #quiz #competitors li {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  margin-top: -.5em;
+  text-align: center; }
+
 body {
   font-family: sans-serif;
   background: #fff; }
 
-ul, li {
+ul, li, h1, p {
   padding: 0;
   margin: 0; }
 
 li {
   list-style: none;
-  font-size: 1.5em;
-  padding: .5em; }
+  font-size: 1.5em; }
 
 html, body {
   height: 100%;
@@ -25,17 +32,61 @@ body {
 
 #quiz * {
   display: none; }
-#quiz .show {
+#quiz br, #quiz p, #quiz div {
+  display: block; }
+#quiz .show, #quiz #start * {
   display: block;
   background: fff; }
-#quiz #competitors li {
+#quiz #start {
+  font-size: 4em; }
+  @media screen and (min-width: 43.75em) {
+    #quiz #start {
+      font-size: 5em; } }
+  @media screen and (min-width: 80em) {
+    #quiz #start {
+      font-size: 8em; } }
+  #quiz #start * {
+    line-height: 1.1; }
+  #quiz #start h1 {
+    font-size: 1em; }
+  #quiz #start p {
+    font-size: .3em;
+    color: rgba(0, 0, 0, 0.4); }
+    #quiz #start p * {
+      display: inline; }
+#quiz #finish {
   position: absolute;
+  top: 0;
+  bottom: 0;
   left: 0;
   right: 0;
-  top: 50%;
-  margin-top: -1em;
-  text-align: center;
-  font-size: 5em; }
+  z-index: 6;
+  background: #333; }
+  #quiz #finish div {
+    font-weight: bold;
+    color: #ffffff;
+    font-size: 5em; }
+    @media screen and (min-width: 80em) {
+      #quiz #finish div {
+        font-size: 12em; } }
+#quiz #competitors li {
+  font-size: 3em; }
+  @media screen and (min-width: 43.75em) {
+    #quiz #competitors li {
+      font-size: 5em; } }
+  @media screen and (min-width: 80em) {
+    #quiz #competitors li {
+      font-size: 10em; } }
+#quiz #questions li {
+  padding: .5em;
+  font-size: 1.5em; }
+  @media screen and (min-width: 43.75em) {
+    #quiz #questions li {
+      padding: .2em;
+      font-size: 3em; } }
+  @media screen and (min-width: 80em) {
+    #quiz #questions li {
+      font-size: 4.5em; } }
 #quiz:-webkit-full-screen {
   height: 100%;
   width: 100%;

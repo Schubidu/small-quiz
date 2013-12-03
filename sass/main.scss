@@ -1,3 +1,7 @@
+$doc-font-size: 16 !default;
+$mq-tablet: 700;
+$mq-hdscreen: 1280;
+
 @mixin fullscreen() {
   &:-webkit-full-screen {
     @content;
@@ -20,12 +24,27 @@
   }
 }
 
+@mixin mq($point, $query1: min, $query2: width) {
+  @media screen and (#{$query1}-#{$query2}: $point / $doc-font-size +em) {
+    @content;
+  }
+}
+
+%displayCenter {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  margin-top: -.5em;
+  text-align: center;
+}
+
 body {
   font-family: sans-serif;
   background: #fff;
 }
 
-ul, li {
+ul, li, h1, p {
   padding: 0;
   margin: 0;
 }
@@ -33,8 +52,6 @@ ul, li {
 li {
   list-style: none;
   font-size: 1.5em;
-  padding: .5em;
-
 }
 
 html, body {
@@ -56,22 +73,99 @@ body {
     display: none;
   }
 
+  br, p, div {
+    display: block;
+  }
+
   .show {
     display: block;
     background: fff;
   }
 
-  #competitors {
-    li {
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 50%;
-      margin-top: -1em;
-      text-align: center;
+  #start {
+    @extend %displayCenter;
 
+    font-size: 4em;
+
+    @include mq($mq-tablet) {
+      font-size: 5em;
+    }
+
+    @include mq($mq-hdscreen) {
+      font-size: 8em;
+    }
+
+    * {
+      @extend .show;
+      line-height: 1.1;
+    }
+
+    h1 {
+      font-size: 1em;
+    }
+
+    p {
+      font-size: .3em;
+      color: rgba(0, 0, 0, 0.4);
+
+      * {
+        display: inline;
+      }
+    }
+
+  }
+
+  #finish {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 6;
+    background: #333;
+
+    div {
+      @extend %displayCenter;
+      font-weight: bold;
+      color: #ffffff;
       font-size: 5em;
 
+      @include mq($mq-hdscreen) {
+        font-size: 12em;
+      }
+
+    }
+
+  }
+
+  #competitors {
+    li {
+      @extend %displayCenter;
+      font-size: 3em;
+
+      @include mq($mq-tablet) {
+        font-size: 5em;
+      }
+
+      @include mq($mq-hdscreen) {
+        font-size: 10em;
+      }
+    }
+  }
+
+  #questions {
+    li {
+      padding: .5em;
+      font-size: 1.5em;
+
+      @include mq($mq-tablet) {
+        padding: .2em;
+        font-size: 3em;
+      }
+
+      @include mq($mq-hdscreen) {
+        font-size: 4.5em;
+      }
     }
   }
 
