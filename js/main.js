@@ -1,4 +1,3 @@
-/// <reference path="IRandomItem.ts"/>
 var RandomList = (function () {
     function RandomList(items) {
         this.items = null;
@@ -10,7 +9,6 @@ var RandomList = (function () {
         this.items = items;
         this.storageItems = [];
 
-        //        this.onStart();
         this.next();
     }
     RandomList.prototype.getItems = function () {
@@ -44,7 +42,6 @@ var RandomList = (function () {
         } else {
             this.isStarted = false;
         }
-        //        }
     };
 
     RandomList.prototype.current = function () {
@@ -70,15 +67,8 @@ var RootElement = (function () {
         this.visibility = false;
         this.element.className = '';
     };
-
-    RootElement.prototype.isVisible = function () {
-        return this.visibility;
-    };
     return RootElement;
 })();
-/// <reference path="IRandomItem.ts"/>
-/// <reference path="RandomList.ts"/>
-/// <reference path="RootElement.ts"/>
 var __extends = this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
