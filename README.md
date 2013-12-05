@@ -7,12 +7,19 @@ Setup
 =====
 
 Grunt and Typescript are required for ths project. Please install first.
-```npm install -g grunt-cli
-npm install -g typescript```
+
+```
+npm install -g grunt-cli
+npm install -g typescript
+```
 
 If you already have the nessassty Components please run
-```npm install```
+```
+npm install
+```
 
 After that you can use 
-```grunt watch```
+```
+grunt watch
+```
 
