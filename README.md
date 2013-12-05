@@ -6,7 +6,7 @@ Display on Fullscreen Questions and the member of the staff who has to answer it
 Setup
 =====
 
-Grunt and Typescript are required for ths project. Please install first.
+Grunt and Typescript are required for this project. Please install first.
 
 ```
 npm install -g grunt-cli
