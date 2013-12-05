@@ -36,6 +36,8 @@ class RandomList {
     }
 
     next():void {
+        //var randomIndex = Math.round(Math.exp(Math.random()*Math.log(this.getItems().length)))+1;
+        // reference: http://stackoverflow.com/questions/1062902/how-random-is-javascripts-math-random
         var randomItemIndex = Math.floor(Math.random() * (this.getItems().length));
         var items = this.getItems();
 
